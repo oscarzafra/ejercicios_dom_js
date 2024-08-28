@@ -46,23 +46,47 @@ aBody.appendChild(aP);
 
 // 2.5 Inserta en el h2 con la clase .fn-insert-here el texto 'Wubba Lubba dub dub'.
 
-const textH2 = document.querySelector('h2.fn-insert-here');
+constInsertH2 = document.querySelector('.fn-insert-here');
+constInsertH2.innerText = 'Wubba Lubba dub dub';
+document.body.appendChild(constInsertH2);
 
-textH2.textContent = 'Wubba Lubba dub dub';
-
-textH2.appendChild('h2.fn-insert-here');
-
-// 2.6 Basandote en el siguiente array crea una lista ul > li con los textos del array.
+//2.6 Basandote en el siguiente array crea una lista ul > li con los textos del array. 
 
 const apps = ['Facebook', 'Netflix', 'Instagram', 'Snapchat', 'Twitter'];
 
-const ul = document.createElement('ul');
+const ulList = document.createElement('ul');
 
-apps.forEach(app => {
-    const li = document.createElement('li');
-    li.textContent = app;
-    ul.appendChild(li);
+apps.forEach (function(app) {
+    const liList = document.createElement('li');
+    liList.innerText = app;
+    ulList.appendChild(liList);
+    document.body.appendChild(ulList);
+})
+
+// 2.7 Elimina todos los nodos que tengan la clase .fn-remove-me
+
+const elementsToRemove = document.querySelectorAll('.fn-remove-me');
+
+elementsToRemove.forEach(function(element) {
+    element.remove();
 });
 
-const bBody = document.querySelector('body');
-body.appendChild(ul);
+//2.8 Inserta una p con el texto 'Voy en medio!' entre los dos div. Recuerda que no solo puedes insertar elementos con .appendChild.
+
+const newParagraph = document.createElement('p');
+newParagraph.textContent = 'Voy en medio!';
+
+const firstDiv = document.querySelectorAll('div')[2];
+const secondDiv = document.querySelectorAll('div')[3];
+
+firstDiv.parentNode.insertBefore(newParagraph, secondDiv);
+
+//2.9 Inserta p con el texto 'Voy dentro!', dentro de todos los div con la clase .fn-insert-here
+
+const divsToInsert = document.querySelectorAll('div.fn-insert-here');
+
+divsToInsert.forEach(function(div) {
+    const newParagraph = document.createElement('p');
+    newParagraph.textContent = 'Voy dentro!';
+    div.appendChild(newParagraph);
+});
